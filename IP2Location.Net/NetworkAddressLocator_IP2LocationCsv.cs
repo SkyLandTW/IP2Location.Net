@@ -34,7 +34,13 @@ namespace IP2Location.Net
         {
             var ipValue = ip.MapToIPv4().GetIPv4Value();
             var result = m_records.BinarySearch(RecordIP4.GetKey, ipValue);
-            var record = m_records[result.Found ? result.Index : result.Index - 1];
+            RecordIP4 record;
+            if (result.Found)
+                record = m_records[result.Index];
+            else if (result.Index == 0)
+                record = m_records[0];
+            else // when not found, index would be "low", from "mid" + 1, so -1 to get "mid"
+                record = m_records[result.Index - 1];
             if (ipValue < record.IP4First)
                 throw new InvalidOperationException();
             if (ipValue > record.IP4Last)
