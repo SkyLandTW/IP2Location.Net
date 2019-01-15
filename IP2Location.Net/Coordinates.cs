@@ -18,8 +18,9 @@ namespace IP2Location.Net
         [Pure]
         public bool Equals(Coordinates other)
         {
-            return Math.Abs(Latitude - other.Latitude) < 0.000000f
-                   && Math.Abs(Longitude - other.Longitude) < 0.000000f;
+            // one latitude = 111km max; consider two values equal when below 0.9mm
+            return Math.Abs(Latitude - other.Latitude) < 1e-8f
+                   && Math.Abs(Longitude - other.Longitude) < 1e-8f;
         }
 
         public override bool Equals(object obj)

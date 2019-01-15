@@ -4,7 +4,7 @@ using System.Diagnostics.Contracts;
 
 namespace IP2Location.Net
 {
-    public sealed class Location : IEquatable<Location>
+    public struct Location : IEquatable<Location>
     {
         [Required] public readonly string CountryCode;
         [Required] public readonly string Country;

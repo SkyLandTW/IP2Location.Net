@@ -39,7 +39,7 @@ namespace IP2Location.Net
                 record = m_records[result.Index];
             else if (result.Index == 0)
                 record = m_records[0];
-            else // when not found, index would be "low", from "mid" + 1, so -1 to get "mid"
+            else // when not found, index would be the "low" of next iteration, calculated from "mid" + 1, so -1 to get "mid"
                 record = m_records[result.Index - 1];
             if (ipValue < record.IP4First)
                 throw new InvalidOperationException();
